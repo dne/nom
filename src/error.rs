@@ -55,6 +55,7 @@ pub trait FromExternalError<I, E> {
 
 /// default error type, only contains the error' location and code
 #[derive(Debug, PartialEq)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct Error<I> {
   /// position of the error in the input data
   pub input: I,
@@ -157,6 +158,7 @@ pub struct VerboseError<I> {
 #[cfg(feature = "alloc")]
 #[cfg_attr(feature = "docsrs", doc(cfg(feature = "alloc")))]
 #[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 /// Error context for `VerboseError`
 pub enum VerboseErrorKind {
   /// Static string added by the `context` function
@@ -362,6 +364,7 @@ pub fn convert_error<I: core::ops::Deref<Target = str>>(
 /// Indicates which parser returned an error
 #[rustfmt::skip]
 #[derive(Debug,PartialEq,Eq,Hash,Clone,Copy)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[allow(deprecated,missing_docs)]
 pub enum ErrorKind {
   Tag,

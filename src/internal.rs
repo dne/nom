@@ -46,6 +46,7 @@ impl<I, O, E> Finish<I, O, E> for IResult<I, O, E> {
 
 /// Contains information on needed data if a parser returned `Incomplete`
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[cfg_attr(nightly, warn(rustdoc::missing_doc_code_examples))]
 pub enum Needed {
   /// Needs more data, but we do not know how much
@@ -93,6 +94,7 @@ impl Needed {
 /// to try other parsers, you were already in the right branch, so the data is invalid
 ///
 #[derive(Debug, Clone, PartialEq)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[cfg_attr(nightly, warn(rustdoc::missing_doc_code_examples))]
 pub enum Err<E> {
   /// There was not enough data
